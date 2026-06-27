@@ -1,0 +1,12 @@
+# Optional: deploy the bot with the Wrangler CLI instead of the dashboard.
+#   npm i -g wrangler && cd bot && wrangler login && wrangler deploy
+#   wrangler secret put BOT_TOKEN
+#   wrangler secret put WEBHOOK_SECRET
+# (ALLOWED_CHAT_ID / DATA_URL can be plain vars below or secrets.)
+name = "sectorpulse-bot"
+main = "worker.js"
+compatibility_date = "2024-11-01"
+
+[vars]
+ALLOWED_CHAT_ID = "540648770"
+DATA_URL = "https://raw.githubusercontent.com/NoamMarks/SectorPulse/data/latest.json"

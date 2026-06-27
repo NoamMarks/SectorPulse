@@ -122,6 +122,8 @@ Optional push alerts ([pipeline/alerts.py](pipeline/alerts.py)). Edge-triggered 
 
 Setup: create a bot with [@BotFather](https://t.me/BotFather) (`/newbot` → bot token), message your new bot once, then add two secrets — `TELEGRAM_BOT_TOKEN` and `TELEGRAM_CHAT_ID` (your chat id, e.g. from [@userinfobot](https://t.me/userinfobot)). Instant alerts come from both the daily and intraday runs; the digest only from the settled daily run.
 
+**On-demand status:** an interactive bot ([bot/](bot/), a free Cloudflare Worker) lets you message `/status`, `/sectors`, `/sector XLK`, or `/help` any time and get an instant reply read from the live `latest.json`. See [bot/README.md](bot/README.md).
+
 Hosting on Vercel/Netlify instead: connect the repo (build dir `web/`) and set `VITE_DATA_URL` to the `data`-branch raw `latest.json` URL so the live feed reaches the site.
 
 Cron is UTC-only and **does not follow DST** — 22:30 UTC is safely after the 16:00 ET close year-round; the intraday window is wide and gated in-code to the real session (PRD §8).
