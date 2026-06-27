@@ -93,54 +93,73 @@ def run(provider_override=None, on_date=None, force=False, mirror_web=True,
     return {"status": payload["status"], "as_of": payload["as_of_trading_date"], "payload": payload}
 
 
-def run_intraday(config_path=None, mirror_web=True, verbose=True, force=False) -> dict:
-    """Intraday refresh (PRD intraday design): overlay live Tiingo IEX prices on the
-    cached EOD history and recompute. No-op outside market hours."""
+def run_live(settled: bool, config_path=None, mirror_web=True, verbose=True, force=False) -> dict:
+    """Tiingo-IEX live path used by BOTH the settled EOD run and intraday refresh.
+
+    yfinance is blocked from cloud/CI IPs and Tiingo's daily endpoint rate-limits a
+    177-symbol pull, so CI never bulk-fetches history. Instead it overlays the IEX
+    batch snapshot (all tickers in ~1 request, no per-symbol limit) onto a history
+    cache seeded once where yfinance works (locally). settled=True finalizes today's
+    bar and persists it into the cache so history grows; settled=False is provisional.
+    """
     cfg = load_config(config_path)
-
-    if not force and not calendar_utils.is_market_open():
-        if verbose:
-            print("[intraday] market closed - no-op (EOD run is authoritative).")
-        return {"status": "closed"}
-
     token = os.environ.get("TIINGO_TOKEN")
     if not token:
-        raise RuntimeError("intraday mode requires TIINGO_TOKEN (Tiingo IEX live prices)")
+        raise RuntimeError("live mode requires TIINGO_TOKEN (Tiingo IEX prices)")
 
-    D = calendar_utils.current_session_date()
+    if not settled and not force and not calendar_utils.is_market_open():
+        if verbose:
+            print("[intraday] market closed - no-op (the settled EOD run is authoritative).")
+        return {"status": "closed"}
+
     frames = eod_cache.load_cache()
     if not frames:
-        # Cold start: seed the cache with a full EOD fetch via the normal chain.
-        if verbose:
-            print("[intraday] no EOD cache found — seeding via full EOD run first.")
-        run(on_date=str(D), force=True, mirror_web=False, config_path=config_path, verbose=verbose)
-        frames = eod_cache.load_cache()
-        if not frames:
-            raise RuntimeError("could not seed EOD cache")
+        raise RuntimeError(
+            "no EOD history cache. Seed it once where yfinance works (locally):\n"
+            "  python -m pipeline.main --provider yfinance --force\n"
+            "then publish data/ to the `data` branch.")
 
+    D = pd.Timestamp(
+        calendar_utils.latest_trading_date() if settled else calendar_utils.current_session_date()
+    )
     live = intraday.fetch_live_tiingo(cfg.all_symbols(), token)
     if not live:
         raise RuntimeError("Tiingo IEX returned no live prices")
     if verbose:
-        print(f"[intraday] {len(live)} live prices; overlaying on cached history as of {D}")
+        print(f"[{'eod' if settled else 'intraday'}] {len(live)} live prices; "
+              f"overlaying on {len(frames)} cached symbols as of {D.date()}")
 
     frames = intraday.overlay_live(frames, live, D)
+    if settled:
+        eod_cache.save_cache(frames)   # persist the finalized bar -> history grows
+
     prev = publish.load_previous()
     computed = compute.compute(frames, cfg, prev, D)
     now = _now_iso()
     payload = assemble.assemble(
         computed, generated_at_utc=now, config_hash=cfg.hash,
         provider="tiingo-iex", benchmark=cfg["benchmark"],
-        status="intraday", intraday=True, as_of_time_utc=now,
+        status=("ok" if settled else "intraday"),
+        intraday=(not settled), as_of_time_utc=(None if settled else now),
     )
     assemble.validate(payload)
     written = publish.publish(payload, keep_days=cfg["history_days"], mirror_web=mirror_web)
     if verbose:
+        cov = payload["coverage"]
         top = payload["sectors"][0]
-        print(f"[intraday-ok] {payload['as_of_trading_date']} @ {now} "
-              f"regime={payload['regime']['state']} top={top['ticker']} rank={top['rss_rank']}")
+        tag = "eod-ok" if settled else "intraday-ok"
+        print(f"[{tag}] {payload['as_of_trading_date']} status={payload['status']} "
+              f"coverage={cov['symbols_ok']}/{cov['symbols_expected']} "
+              f"sectors={len(payload['sectors'])} regime={payload['regime']['state']} "
+              f"top={top['ticker']}#{top['rss_rank']}")
         print(f"     wrote: {', '.join(str(p) for p in written)}")
-    return {"status": "intraday", "as_of": payload["as_of_trading_date"], "payload": payload}
+    return {"status": payload["status"], "as_of": payload["as_of_trading_date"], "payload": payload}
+
+
+def run_intraday(config_path=None, mirror_web=True, verbose=True, force=False) -> dict:
+    """Backwards-compatible alias: provisional intraday overlay (PRD intraday design)."""
+    return run_live(settled=False, config_path=config_path, mirror_web=mirror_web,
+                    verbose=verbose, force=force)
 
 
 def _provider_kwargs(name: str, cfg) -> dict:
@@ -162,8 +181,18 @@ def main(argv=None):
     args = p.parse_args(argv)
     try:
         if args.mode == "intraday":
-            run_intraday(config_path=args.config, mirror_web=not args.no_web, force=args.force)
+            run_live(settled=False, config_path=args.config,
+                     mirror_web=not args.no_web, force=args.force)
+        elif args.provider:
+            # forced full-chain fetch — used to SEED the history cache (e.g. yfinance locally)
+            run(provider_override=args.provider, on_date=args.date, force=args.force,
+                mirror_web=not args.no_web, config_path=args.config)
+        elif os.environ.get("TIINGO_TOKEN") and eod_cache.DEFAULT_CACHE.exists():
+            # settled EOD via Tiingo IEX overlaid on the cached history (CI default)
+            run_live(settled=True, config_path=args.config,
+                     mirror_web=not args.no_web, force=args.force)
         else:
+            # no token/cache yet — full-chain fetch (local default / first seed)
             run(provider_override=args.provider, on_date=args.date, force=args.force,
                 mirror_web=not args.no_web, config_path=args.config)
     except Exception as exc:  # fail loud (PRD §8.5) — non-zero exit alerts the owner

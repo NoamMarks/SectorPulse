@@ -38,26 +38,22 @@ jobs:
 
       - run: pip install -r requirements.txt
 
-      # Seed ./data with the prior snapshot so idempotency + breadth hysteresis work.
-      - name: Restore previous data from the data branch
+      # Seed ./data with the prior snapshot + history cache so the settled EOD run
+      # can overlay today's IEX close, grow history, and apply breadth hysteresis.
+      - name: Restore previous data + history cache from the data branch
         run: |
           mkdir -p data
           if git fetch -q origin data 2>/dev/null; then
-            git show origin/data:latest.json > data/latest.json || true
+            git show origin/data:latest.json > data/latest.json 2>/dev/null || true
+            git show origin/data:eod_cache.json.gz > data/eod_cache.json.gz 2>/dev/null || echo "no cache yet (seed it locally — see README)"
           fi
 
-      - name: Run pipeline
+      - name: Run settled EOD (Tiingo IEX overlaid on cached history)
         id: run
         env:
-          # yfinance first: it batch-fetches all 177 symbols in one call. Tiingo's
-          # free tier (~50 unique symbols/hour) can't bulk-pull the history, so it's
-          # only a fallback here; it powers intraday live prices instead.
-          SECTORPULSE_PROVIDERS: "yfinance,tiingo,stooq"
           TIINGO_TOKEN: ${{ secrets.TIINGO_TOKEN }}
-          APCA_API_KEY_ID: ${{ secrets.APCA_API_KEY_ID }}
-          APCA_API_SECRET_KEY: ${{ secrets.APCA_API_SECRET_KEY }}
         run: |
-          python -m pipeline.main --no-web ${{ inputs.force && '--force' || '' }}
+          python -m pipeline.main --mode eod --no-web ${{ inputs.force && '--force' || '' }}
           echo "status=ok" >> "$GITHUB_OUTPUT"
 
       - name: Publish to the data branch (durable history, PRD §9)
