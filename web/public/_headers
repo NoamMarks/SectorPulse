@@ -1,0 +1,7 @@
+# Daily data file — always revalidate so the freshest version is served.
+/data/latest.json
+  Cache-Control: no-cache
+
+# Hashed build assets — safe to cache forever (filenames change on rebuild).
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable

@@ -1,0 +1,95 @@
+# SectorPulse configuration — PRD §17.
+# Every quantitative parameter lives here (no magic numbers in application logic).
+# All defaults are ASSUMPTIONS pending the §12 sensitivity study.
+
+benchmark: SPY
+
+# Provider priority chain (PRD §6.1). First available + non-failing wins.
+# "synthetic" is deterministic offline data for local dev / CI smoke tests.
+providers:
+  - synthetic        # default for offline/CI; move to the end for production
+  - tiingo
+  - alpaca
+  - stooq
+  - yfinance
+
+# Trailing history window fetched each run (PRD §6.3) — enough for SMA200, 52w high, ATR median.
+history_lookback_days: 400   # calendar days (~260 trading days)
+history_days: 365            # hot trading-day history retained for sparklines/backtest (PRD §9)
+
+# --- Relative Strength (PRD §5.2 / §5.3) ---
+horizon_weights:             # must sum to 1.0
+  5: 0.2
+  20: 0.3
+  50: 0.5
+slope_window: 20             # RS-line regression slope
+persist_window: 10           # lookback for leadership persistence
+persist_rank_min: 70         # rss_rank threshold counted as "leading"
+sparkline_window: 20         # trailing rss values emitted per sector
+
+# --- Regime gate (PRD §5.1) ---
+regime_sma: 200
+regime_breadth_min: 50       # % of sectors above their 200SMA for risk_on
+
+# --- Breadth / MAP (PRD §5.4) ---
+map_high: 80
+map_mid: 50
+map_rally_on: 80             # hysteresis: flag turns on at >= this
+map_rally_off: 70            # ...and off only below this
+
+# --- Volume confirmation & breakout (PRD §5.5) ---
+breakout_band: 5.0           # within X% of 52-week high
+vol_mult: 1.5                # breakout requires volume >= mult * 50d avg
+udvr_window: 20              # up/down volume ratio lookback
+
+# --- Setup classification (PRD §5.6) ---
+setup_sma50_band: 3.0        # |price - SMA50| within X%
+setup_atr_ratio_max: 0.75    # ATR14 / median(ATR14, 1y) <= this => volatility contraction
+
+# --- Universe (PRD §6.4) ---
+universe_size: 15            # max constituents per sector by dollar volume
+min_dollar_volume: 20000000  # $/day liquidity floor
+
+# --- Trade framework (PRD §7) — guidance only, off by default in UI ---
+equity: 100000
+risk_budget: 0.005           # 0.5% of equity risked per trade
+atr_stop_mult: 2.0
+exit_rank: 50
+
+# --- Sector ETFs and their constituent universes ---
+# Representative large-cap members; the real providers fetch these, the synthetic
+# provider generates deterministic series for them. Refine membership point-in-time in production.
+sectors:
+  XLK:
+    name: Technology
+    stocks: [AAPL, MSFT, NVDA, AVGO, ORCL, CRM, AMD, ADBE, CSCO, ACN, INTC, QCOM, TXN, IBM, NOW]
+  XLF:
+    name: Financials
+    stocks: [BRK-B, JPM, V, MA, BAC, WFC, GS, MS, AXP, SPGI, BLK, C, SCHW, CB, PGR]
+  XLV:
+    name: Health Care
+    stocks: [LLY, UNH, JNJ, MRK, ABBV, TMO, ABT, DHR, PFE, AMGN, ISRG, BMY, ELV, MDT, GILD]
+  XLE:
+    name: Energy
+    stocks: [XOM, CVX, COP, EOG, SLB, MPC, PSX, WMB, OXY, VLO, KMI, TRGP, BKR, FANG, DVN]
+  XLI:
+    name: Industrials
+    stocks: [GE, CAT, RTX, HON, UNP, BA, ETN, DE, LMT, UPS, ADP, GD, NOC, EMR, CSX]
+  XLY:
+    name: Consumer Discretionary
+    stocks: [AMZN, TSLA, HD, MCD, BKNG, LOW, NKE, SBUX, TJX, ORLY, MAR, CMG, GM, F, ABNB]
+  XLP:
+    name: Consumer Staples
+    stocks: [COST, WMT, PG, KO, PEP, PM, MO, MDLZ, CL, TGT, KMB, GIS, SYY, KHC, STZ]
+  XLU:
+    name: Utilities
+    stocks: [NEE, SO, DUK, CEG, AEP, SRE, D, EXC, XEL, PEG, ED, PCG, WEC, EIX, AWK]
+  XLB:
+    name: Materials
+    stocks: [LIN, SHW, FCX, ECL, APD, NEM, CTVA, DOW, NUE, DD, PPG, VMC, MLM, ALB, IFF]
+  XLRE:
+    name: Real Estate
+    stocks: [PLD, AMT, EQIX, WELL, SPG, PSA, O, CCI, DLR, CBRE, VICI, EXR, AVB, IRM, SBAC]
+  XLC:
+    name: Communication Services
+    stocks: [META, GOOGL, GOOG, NFLX, DIS, TMUS, CMCSA, VZ, T, CHTR, EA, WBD, OMC, TTWO, MTCH]

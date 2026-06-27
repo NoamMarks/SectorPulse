@@ -1,0 +1,63 @@
+name: SectorPulse Intraday
+
+# Runs roughly every 15 min across US market hours. GitHub cron is UTC-only and
+# best-effort (often late/skipped under load), so this is "~every 15-30 min", not
+# a hard guarantee. The window is wide (covers EST and EDT); a cheap in-runner
+# gate skips off-hours firings before doing any real work, and the pipeline's own
+# market-hours + holiday guard no-ops anything that slips through.
+on:
+  schedule:
+    - cron: "*/15 13-21 * * 1-5"
+  workflow_dispatch:
+
+concurrency:
+  group: sectorpulse-intraday
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  intraday:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Market-hours gate (skip off-hours runs before any heavy setup)
+        id: gate
+        run: |
+          OPEN=$(python3 -c "import datetime,zoneinfo as z; n=datetime.datetime.now(z.ZoneInfo('America/New_York')); m=n.hour*60+n.minute; print(1 if (n.weekday()<5 and 570<=m<960) else 0)")
+          echo "open=$OPEN" >> "$GITHUB_OUTPUT"
+          echo "market open=$OPEN (1=yes)"
+
+      - uses: actions/checkout@v4
+        if: steps.gate.outputs.open == '1'
+
+      - uses: actions/setup-python@v5
+        if: steps.gate.outputs.open == '1'
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - run: pip install -r requirements.txt
+        if: steps.gate.outputs.open == '1'
+
+      - name: Restore EOD cache + previous snapshot from the data branch
+        if: steps.gate.outputs.open == '1'
+        run: |
+          mkdir -p data
+          git fetch -q origin data || true
+          git show origin/data:eod_cache.json.gz > data/eod_cache.json.gz 2>/dev/null || echo "no eod cache yet (intraday will seed it)"
+          git show origin/data:latest.json > data/latest.json 2>/dev/null || true
+
+      - name: Intraday overlay (Tiingo IEX live prices)
+        if: steps.gate.outputs.open == '1'
+        env:
+          TIINGO_TOKEN: ${{ secrets.TIINGO_TOKEN }}
+        run: python -m pipeline.main --mode intraday --no-web
+
+      - name: Publish updated data to the data branch
+        if: steps.gate.outputs.open == '1'
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: bash scripts/publish_data_branch.sh

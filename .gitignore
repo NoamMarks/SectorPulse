@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.pytest_cache/
+*.egg-info/
+
+# Node / Vite
+web/node_modules/
+web/dist/
+.DS_Store
+
+# Local pipeline output (published to the `data` branch in CI, not committed to main).
+# The committed bootstrap snapshot lives at web/public/data/latest.json instead.
+/data/
+*.local.json
+
+# Secrets — never commit
+.env
+*.secret

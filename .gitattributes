@@ -1,0 +1,5 @@
+# Normalize line endings. Force LF on shell scripts so they run on the Linux CI runner.
+* text=auto
+*.sh text eol=lf
+*.json text eol=lf
+*.gz binary

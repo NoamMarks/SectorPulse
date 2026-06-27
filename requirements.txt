@@ -1,0 +1,12 @@
+# SectorPulse pipeline runtime + dev dependencies
+pandas>=2.2
+numpy>=1.26
+PyYAML>=6.0
+jsonschema>=4.0
+requests>=2.31
+
+# Dev / test
+pytest>=8.0
+
+# Optional real-data providers (install as needed; pipeline degrades gracefully without them)
+# yfinance>=0.2.40
