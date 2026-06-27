@@ -52,6 +52,8 @@ jobs:
         id: run
         env:
           TIINGO_TOKEN: ${{ secrets.TIINGO_TOKEN }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: |
           python -m pipeline.main --mode eod --no-web ${{ inputs.force && '--force' || '' }}
           echo "status=ok" >> "$GITHUB_OUTPUT"

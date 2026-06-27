@@ -109,6 +109,19 @@ The deployed dashboard **runtime-fetches `latest.json` and polls it every 60 s**
 
 Run locally during market hours: `TIINGO_TOKEN=... python -m pipeline.main --mode intraday`.
 
+### Notifications (Telegram)
+
+Optional push alerts ([pipeline/alerts.py](pipeline/alerts.py)). Edge-triggered (fire only on an actual change, so the 15-min cadence doesn't spam) and non-fatal (a failed send never breaks the pipeline). No-op unless the secrets below are set.
+
+| Alert | Fires when |
+|---|---|
+| 🔄 Regime change | market regime flips risk-on ↔ neutral ↔ risk-off |
+| 🚀 Breakout | a sector becomes volume-confirmed near its 52-week high |
+| 👑 Leadership rotation | the #1 RSS-rank sector changes |
+| 📊 Daily digest | once after each close — regime, top 3, breakouts, rally/divergence flags |
+
+Setup: create a bot with [@BotFather](https://t.me/BotFather) (`/newbot` → bot token), message your new bot once, then add two secrets — `TELEGRAM_BOT_TOKEN` and `TELEGRAM_CHAT_ID` (your chat id, e.g. from [@userinfobot](https://t.me/userinfobot)). Instant alerts come from both the daily and intraday runs; the digest only from the settled daily run.
+
 Hosting on Vercel/Netlify instead: connect the repo (build dir `web/`) and set `VITE_DATA_URL` to the `data`-branch raw `latest.json` URL so the live feed reaches the site.
 
 Cron is UTC-only and **does not follow DST** — 22:30 UTC is safely after the 16:00 ET close year-round; the intraday window is wide and gated in-code to the real session (PRD §8).

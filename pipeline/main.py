@@ -15,7 +15,7 @@ from datetime import datetime, timezone
 
 import pandas as pd
 
-from . import assemble, calendar_utils, compute, eod_cache, intraday, publish
+from . import alerts, assemble, calendar_utils, compute, eod_cache, intraday, publish
 from .config import load_config
 from .providers import ProviderChain, build_provider
 
@@ -144,6 +144,8 @@ def run_live(settled: bool, config_path=None, mirror_web=True, verbose=True, for
     )
     assemble.validate(payload)
     written = publish.publish(payload, keep_days=cfg["history_days"], mirror_web=mirror_web)
+    # Telegram alerts: instant events every run, daily digest only on the settled EOD run.
+    alerts.notify(prev, payload, digest=settled, verbose=verbose)
     if verbose:
         cov = payload["coverage"]
         top = payload["sectors"][0]
