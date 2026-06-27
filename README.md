@@ -86,21 +86,26 @@ SectorPulse updates itself on two cadences, both free:
 
 | Workflow | When | What it does |
 |---|---|---|
-| **Daily** ([daily.yml](.github/workflows/daily.yml)) | Mon–Fri 22:30 UTC (after close) | Full **settled EOD** compute → caches the 1-yr history → publishes `latest.json` to the `data` branch → **deploys the site**. |
-| **Intraday** ([intraday.yml](.github/workflows/intraday.yml)) | ~every 15 min, market hours | One **Tiingo IEX** call for live prices → overlays them on the cached history → recomputes → publishes a **provisional** `latest.json` (`status:"intraday"`). No rebuild. |
+| **Daily** ([daily.yml](.github/workflows/daily.yml)) | Mon–Fri 22:30 UTC (after close) | Overlays the **settled** Tiingo IEX close on the cached history, **persists** today's bar, publishes `latest.json` to the `data` branch → **deploys the site**. |
+| **Intraday** ([intraday.yml](.github/workflows/intraday.yml)) | ~every 15 min, market hours | One **Tiingo IEX** call for live prices → overlays on the cached history → recomputes → publishes a **provisional** `latest.json` (`status:"intraday"`). No rebuild. |
 
-The deployed dashboard **runtime-fetches `latest.json` and polls it every 60 s** (and on tab focus), so an open tab shows fresh intraday data — with a pulsing **● LIVE** badge and a "provisional until close" note — without any redeploy.
+The deployed dashboard **runtime-fetches `latest.json` and polls it every 60 s** (and on tab focus), so an open tab shows fresh data — with a pulsing **● LIVE** badge and a "provisional until close" note during the session — without any redeploy.
 
 ### How "live" actually works (and its limits)
-- **Efficiency:** intraday never re-pulls history — the daily job caches it (`eod_cache.json.gz` on the `data` branch); intraday only fetches today's live prices (1 batched IEX request). Stays inside Tiingo's free limits.
+- **Why a seeded cache:** yfinance is blocked from cloud/CI IPs, and Tiingo's *daily* endpoint rate-limits a 177-symbol pull (~50 unique symbols/hour). So CI never bulk-fetches history — it overlays the **Tiingo IEX batch snapshot** (all tickers in ~1 request, no per-symbol cap) onto a history cache (`eod_cache.json.gz`) that is **seeded once locally** (where yfinance works) and then grows one bar per day. This keeps every CI run inside Tiingo's free limits.
 - **Cron is best-effort.** GitHub schedules run late/skip under load, so intraday is "~every 15–30 min," not exact. For tighter cadence, point a free external pinger (e.g. cron-job.org) at the workflow's `workflow_dispatch`.
-- **CDN cache.** The live site fetches `latest.json` from the `data` branch raw URL (`raw.githubusercontent.com`, ~5 min cache) — fine for a 15-min cadence. Intraday numbers are **provisional** (unsettled prints) until the EOD run finalizes them.
+- **CDN cache.** The live site fetches `latest.json` from the `data` branch raw URL (`raw.githubusercontent.com`, ~5 min cache) — fine for a 15-min cadence. Intraday numbers are **provisional** (unsettled IEX prints) until the EOD run finalizes them.
 
 ### Deploy (one-time)
 1. Push this repo to GitHub — **make it public** ⇒ unlimited free Actions minutes (PRD §4).
-2. Add secrets (Settings → Secrets → Actions): **`TIINGO_TOKEN`** (required for live data; free at tiingo.com), optionally `APCA_API_KEY_ID` / `APCA_API_SECRET_KEY`.
+2. Add the secret (Settings → Secrets → Actions): **`TIINGO_TOKEN`** (free at tiingo.com — powers all live data via the IEX endpoint).
 3. Enable **Pages** (Settings → Pages → Source: GitHub Actions).
-4. Run the **Daily** workflow once (*Actions → SectorPulse Daily → Run workflow*) to seed the `data` branch + cache and do the first deploy. Intraday takes over automatically during market hours.
+4. **Seed the history cache locally** (CI can't bulk-fetch), then publish it to the `data` branch:
+   ```bash
+   python -m pipeline.main --provider yfinance --force   # builds data/eod_cache.json.gz + latest.json
+   bash scripts/seed_data_branch.sh                       # pushes data/ to the `data` branch
+   ```
+5. Run the **Daily** workflow once (*Actions → SectorPulse Daily → Run workflow*) to deploy the site. Daily + intraday then maintain everything via Tiingo IEX. Re-seed only when you change the universe in `config.yml`.
 
 Run locally during market hours: `TIINGO_TOKEN=... python -m pipeline.main --mode intraday`.
 
