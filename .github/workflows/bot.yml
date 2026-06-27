@@ -1,0 +1,32 @@
+name: SectorPulse Bot
+
+# Always-on /status replies without any extra hosting: poll Telegram every ~5 min
+# and answer pending commands. GitHub cron is best-effort, so replies arrive within
+# ~5 min (sometimes longer). For instant replies, run `python -m pipeline.bot --watch`
+# locally. Both use the same code; no new account needed.
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: sectorpulse-bot
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  poll:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install requests
+      - name: Answer pending Telegram commands
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python -m pipeline.bot --once
