@@ -19,6 +19,14 @@ def _esc(x) -> str:
     return html.escape(str(x))
 
 
+def _log(s: str) -> None:
+    """Print without crashing on non-UTF-8 consoles (e.g. Windows cp1252)."""
+    try:
+        print(s)
+    except UnicodeEncodeError:
+        print(s.encode("ascii", "replace").decode())
+
+
 def _send_telegram(text: str, token: str, chat_id: str, timeout: int = 15) -> None:
     r = requests.post(_API.format(token=token), timeout=timeout, json={
         "chat_id": chat_id, "text": text,
@@ -105,8 +113,8 @@ def notify(prev_payload: dict | None, new_payload: dict, *, digest: bool = False
             _send_telegram(m, token, chat)
             sent += 1
             if verbose:
-                print(f"[alerts] sent: {m.splitlines()[0]}")
+                _log(f"[alerts] sent: {m.splitlines()[0]}")
         except Exception as exc:  # non-fatal — never break the pipeline
             if verbose:
-                print(f"[alerts] send failed (non-fatal): {exc}")
+                _log(f"[alerts] send failed (non-fatal): {exc}")
     return sent
