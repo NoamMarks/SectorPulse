@@ -49,8 +49,10 @@ jobs:
       - name: Run pipeline
         id: run
         env:
-          # Real providers in priority order (synthetic stays first only for local dev).
-          SECTORPULSE_PROVIDERS: "tiingo,alpaca,stooq,yfinance"
+          # yfinance first: it batch-fetches all 177 symbols in one call. Tiingo's
+          # free tier (~50 unique symbols/hour) can't bulk-pull the history, so it's
+          # only a fallback here; it powers intraday live prices instead.
+          SECTORPULSE_PROVIDERS: "yfinance,tiingo,stooq"
           TIINGO_TOKEN: ${{ secrets.TIINGO_TOKEN }}
           APCA_API_KEY_ID: ${{ secrets.APCA_API_KEY_ID }}
           APCA_API_SECRET_KEY: ${{ secrets.APCA_API_SECRET_KEY }}

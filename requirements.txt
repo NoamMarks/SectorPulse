@@ -8,5 +8,8 @@ requests>=2.31
 # Dev / test
 pytest>=8.0
 
-# Optional real-data providers (install as needed; pipeline degrades gracefully without them)
-# yfinance>=0.2.40
+# Real-data providers.
+# yfinance batch-downloads the full universe in one call (used for the daily EOD
+# history seed — Tiingo's free tier caps ~50 unique symbols/hour, too low for a
+# 177-symbol one-shot historical pull). Tiingo IEX is used for intraday live prices.
+yfinance>=0.2.40
