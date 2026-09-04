@@ -1,15 +1,15 @@
 {
   "schema_version": 1,
-  "generated_at_utc": "2026-09-03T19:43:09Z",
+  "generated_at_utc": "2026-09-04T00:16:31Z",
   "as_of_trading_date": "2026-09-03",
   "benchmark": "SPY",
-  "status": "intraday",
+  "status": "ok",
   "config_hash": "67788161",
   "provider": "tiingo-iex",
   "regime": {
     "state": "risk_on",
     "spy_above_200sma": true,
-    "pct_sectors_above_200sma": 90.9
+    "pct_sectors_above_200sma": 72.7
   },
   "coverage": {
     "symbols_expected": 177,
@@ -20,9 +20,9 @@
     {
       "ticker": "XLE",
       "name": "Energy",
-      "rss": 0.1138,
+      "rss": 0.1118,
       "rss_rank": 99,
-      "rss_slope": 0.0043,
+      "rss_slope": 0.0042,
       "rss_persist": 10,
       "trend": "positive",
       "breakout": false,
@@ -53,7 +53,7 @@
         0.0787,
         0.1103,
         0.13,
-        0.1138
+        0.1118
       ],
       "other_count": 3,
       "leaders": [
@@ -61,120 +61,120 @@
           "ticker": "MPC",
           "name": "MPC",
           "classification": "LEADER",
-          "rss": 0.3003,
+          "rss": 0.2961,
           "pct_from_52w_high": 0.0,
           "above_sma50": true,
           "above_sma200": true,
-          "atr_14": 5.6563,
-          "suggested_stop": 378.09,
-          "suggested_shares": 44
+          "atr_14": 5.5355,
+          "suggested_stop": 376.64,
+          "suggested_shares": 45
         },
         {
           "ticker": "PSX",
           "name": "PSX",
           "classification": "LEADER",
-          "rss": 0.2664,
-          "pct_from_52w_high": -0.5623,
+          "rss": 0.2666,
+          "pct_from_52w_high": -0.5584,
           "above_sma50": true,
           "above_sma200": true,
-          "atr_14": 3.5591,
-          "suggested_stop": 247.53,
+          "atr_14": 3.5584,
+          "suggested_stop": 247.54,
           "suggested_shares": 70
         },
         {
           "ticker": "VLO",
           "name": "VLO",
           "classification": "LEADER",
-          "rss": 0.2643,
+          "rss": 0.2633,
           "pct_from_52w_high": 0.0,
           "above_sma50": true,
           "above_sma200": true,
-          "atr_14": 5.232,
-          "suggested_stop": 360.66,
-          "suggested_shares": 47
+          "atr_14": 5.201,
+          "suggested_stop": 360.29,
+          "suggested_shares": 48
         },
         {
           "ticker": "COP",
           "name": "COP",
           "classification": "LEADER",
-          "rss": 0.1448,
-          "pct_from_52w_high": -1.0386,
+          "rss": 0.1446,
+          "pct_from_52w_high": -1.0787,
           "above_sma50": true,
           "above_sma200": true,
-          "atr_14": 1.8782,
-          "suggested_stop": 132.02,
-          "suggested_shares": 133
+          "atr_14": 1.8821,
+          "suggested_stop": 131.96,
+          "suggested_shares": 132
         },
         {
           "ticker": "CVX",
           "name": "CVX",
           "classification": "LEADER",
-          "rss": 0.1236,
-          "pct_from_52w_high": -0.0614,
+          "rss": 0.1222,
+          "pct_from_52w_high": -0.2172,
           "above_sma50": true,
           "above_sma200": true,
-          "atr_14": 2.0995,
-          "suggested_stop": 207.45,
-          "suggested_shares": 119
+          "atr_14": 2.1231,
+          "suggested_stop": 207.07,
+          "suggested_shares": 117
         },
         {
           "ticker": "SLB",
           "name": "SLB",
           "classification": "LEADER",
-          "rss": 0.1205,
-          "pct_from_52w_high": -4.3844,
+          "rss": 0.1198,
+          "pct_from_52w_high": -4.4759,
           "above_sma50": true,
           "above_sma200": true,
-          "atr_14": 1.1178,
-          "suggested_stop": 55.23,
-          "suggested_shares": 223
+          "atr_14": 1.1217,
+          "suggested_stop": 55.17,
+          "suggested_shares": 222
         },
         {
           "ticker": "XOM",
           "name": "XOM",
           "classification": "LEADER",
-          "rss": 0.0888,
-          "pct_from_52w_high": -4.4559,
+          "rss": 0.0858,
+          "pct_from_52w_high": -4.7583,
           "above_sma50": true,
           "above_sma200": true,
-          "atr_14": 1.9284,
-          "suggested_stop": 158.87,
-          "suggested_shares": 129
+          "atr_14": 1.9652,
+          "suggested_stop": 158.28,
+          "suggested_shares": 127
         },
         {
           "ticker": "TRGP",
           "name": "TRGP",
           "classification": "LEADER",
-          "rss": 0.0701,
-          "pct_from_52w_high": -2.9181,
+          "rss": 0.0707,
+          "pct_from_52w_high": -2.8817,
           "above_sma50": true,
           "above_sma200": true,
-          "atr_14": 4.2817,
-          "suggested_stop": 284.87,
+          "atr_14": 4.2853,
+          "suggested_stop": 284.97,
           "suggested_shares": 58
         },
         {
           "ticker": "EOG",
           "name": "EOG",
           "classification": "LEADER",
-          "rss": 0.0592,
-          "pct_from_52w_high": -4.0673,
+          "rss": 0.0535,
+          "pct_from_52w_high": -4.6325,
           "above_sma50": true,
           "above_sma200": true,
-          "atr_14": 2.1854,
-          "suggested_stop": 142.45,
-          "suggested_shares": 114
+          "atr_14": 2.2472,
+          "suggested_stop": 141.47,
+          "suggested_shares": 111
         },
         {
           "ticker": "FANG",
           "name": "FANG",
           "classification": "LEADER",
-          "rss": 0.0448,
-          "pct_from_52w_high": -4.6236,
+          "rss": 0.0462,
+          "pct_from_52w_high": -4.5083,
           "above_sma50": true,
           "above_sma200": true,
-          "atr_14": 2.8028,
-          "suggested_stop": 197.09,
+          "atr_14": 2.7853,
+          "suggested_stop": 197.37,
           "suggested_shares": 89
         }
       ],
@@ -183,8 +183,8 @@
           "ticker": "WMB",
           "name": "WMB",
           "classification": "SETUP",
-          "pct_from_sma50": 1.1924,
-          "atr_ratio": 0.6711,
+          "pct_from_sma50": 0.7393,
+          "atr_ratio": 0.6881,
           "vol_contraction": true,
           "above_sma200": true
         },
@@ -192,8 +192,8 @@
           "ticker": "KMI",
           "name": "KMI",
           "classification": "SETUP",
-          "pct_from_sma50": -1.0703,
-          "atr_ratio": 0.6957,
+          "pct_from_sma50": -1.3,
+          "atr_ratio": 0.7057,
           "vol_contraction": true,
           "above_sma200": true
         }
@@ -202,7 +202,7 @@
     {
       "ticker": "XLV",
       "name": "Health Care",
-      "rss": 0.0684,
+      "rss": 0.0692,
       "rss_rank": 89,
       "rss_slope": 0.0025,
       "rss_persist": 10,
@@ -235,7 +235,7 @@
         0.0451,
         0.0644,
         0.0846,
-        0.0684
+        0.0692
       ],
       "other_count": 4,
       "leaders": [
@@ -243,108 +243,108 @@
           "ticker": "MRK",
           "name": "MRK",
           "classification": "LEADER",
-          "rss": 0.169,
-          "pct_from_52w_high": -2.9818,
+          "rss": 0.1729,
+          "pct_from_52w_high": -2.627,
           "above_sma50": true,
           "above_sma200": true,
-          "atr_14": 2.3782,
-          "suggested_stop": 147.03,
-          "suggested_shares": 105
+          "atr_14": 2.4178,
+          "suggested_stop": 147.5,
+          "suggested_shares": 103
         },
         {
           "ticker": "TMO",
           "name": "TMO",
           "classification": "LEADER",
-          "rss": 0.1386,
-          "pct_from_52w_high": -3.1416,
+          "rss": 0.1393,
+          "pct_from_52w_high": -3.0945,
           "above_sma50": true,
           "above_sma200": true,
-          "atr_14": 7.7945,
-          "suggested_stop": 602.54,
-          "suggested_shares": 32
+          "atr_14": 7.816,
+          "suggested_stop": 602.8,
+          "suggested_shares": 31
         },
         {
           "ticker": "AMGN",
           "name": "AMGN",
           "classification": "LEADER",
-          "rss": 0.1334,
-          "pct_from_52w_high": -0.0496,
+          "rss": 0.1347,
+          "pct_from_52w_high": 0.0,
           "above_sma50": true,
           "above_sma200": true,
-          "atr_14": 5.053,
-          "suggested_stop": 433.51,
+          "atr_14": 5.0887,
+          "suggested_stop": 433.94,
           "suggested_shares": 49
         },
         {
           "ticker": "GILD",
           "name": "GILD",
           "classification": "LEADER",
-          "rss": 0.1191,
-          "pct_from_52w_high": -1.7632,
+          "rss": 0.1194,
+          "pct_from_52w_high": -1.7469,
           "above_sma50": true,
           "above_sma200": true,
-          "atr_14": 1.9543,
-          "suggested_stop": 147.29,
+          "atr_14": 1.9561,
+          "suggested_stop": 147.31,
           "suggested_shares": 127
         },
         {
           "ticker": "BMY",
           "name": "BMY",
           "classification": "LEADER",
-          "rss": 0.1076,
-          "pct_from_52w_high": -0.2061,
+          "rss": 0.1124,
+          "pct_from_52w_high": 0.0,
           "above_sma50": true,
           "above_sma200": true,
-          "atr_14": 0.7458,
-          "suggested_stop": 66.29,
-          "suggested_shares": 335
+          "atr_14": 0.768,
+          "suggested_stop": 66.55,
+          "suggested_shares": 325
         },
         {
           "ticker": "JNJ",
           "name": "JNJ",
           "classification": "LEADER",
-          "rss": 0.1034,
+          "rss": 0.1046,
           "pct_from_52w_high": 0.0,
           "above_sma50": true,
           "above_sma200": true,
-          "atr_14": 3.2499,
-          "suggested_stop": 271.66,
+          "atr_14": 3.2692,
+          "suggested_stop": 271.89,
           "suggested_shares": 76
         },
         {
           "ticker": "PFE",
           "name": "PFE",
           "classification": "LEADER",
-          "rss": 0.0843,
-          "pct_from_52w_high": -0.9821,
+          "rss": 0.0871,
+          "pct_from_52w_high": -0.7236,
           "above_sma50": true,
           "above_sma200": true,
-          "atr_14": 0.3339,
-          "suggested_stop": 28.07,
-          "suggested_shares": 748
+          "atr_14": 0.3285,
+          "suggested_stop": 28.15,
+          "suggested_shares": 760
         },
         {
           "ticker": "ABBV",
           "name": "ABBV",
           "classification": "LEADER",
-          "rss": 0.0595,
-          "pct_from_52w_high": -2.1093,
+          "rss": 0.0591,
+          "pct_from_52w_high": -2.1657,
           "above_sma50": true,
           "above_sma200": true,
-          "atr_14": 2.9631,
-          "suggested_stop": 254.43,
+          "atr_14": 2.9738,
+          "suggested_stop": 254.26,
           "suggested_shares": 84
         },
         {
           "ticker": "ELV",
           "name": "ELV",
           "classification": "LEADER",
-          "rss": 0.0281,
-          "pct_from_52w_high": -2.8925,
+          "rss": 0.0291,
+          "pct_from_52w_high": -2.814,
           "above_sma50": true,
           "above_sma200": true,
-          "atr_14": 5.3938,
-          "suggested_stop": 403.66,
+          "atr_14": 5.4177,
+          "suggested_stop": 403.94,
           "suggested_shares": 46
         }
       ],
@@ -353,8 +353,8 @@
           "ticker": "UNH",
           "name": "UNH",
           "classification": "SETUP",
-          "pct_from_sma50": -2.6571,
-          "atr_ratio": 0.5263,
+          "pct_from_sma50": -2.6154,
+          "atr_ratio": 0.5277,
           "vol_contraction": true,
           "above_sma200": true
         },
@@ -362,8 +362,8 @@
           "ticker": "LLY",
           "name": "LLY",
           "classification": "SETUP",
-          "pct_from_sma50": -2.5244,
-          "atr_ratio": 0.6206,
+          "pct_from_sma50": -2.3642,
+          "atr_ratio": 0.6157,
           "vol_contraction": true,
           "above_sma200": true
         }
@@ -372,7 +372,7 @@
     {
       "ticker": "XLF",
       "name": "Financials",
-      "rss": 0.0275,
+      "rss": 0.0277,
       "rss_rank": 79,
       "rss_slope": 0.0005,
       "rss_persist": 10,
@@ -405,7 +405,7 @@
         0.0128,
         0.0096,
         0.0258,
-        0.0275
+        0.0277
       ],
       "other_count": 3,
       "leaders": [
@@ -413,121 +413,121 @@
           "ticker": "SCHW",
           "name": "SCHW",
           "classification": "LEADER",
-          "rss": 0.0817,
-          "pct_from_52w_high": -2.7805,
+          "rss": 0.0808,
+          "pct_from_52w_high": -2.8773,
           "above_sma50": true,
           "above_sma200": true,
-          "atr_14": 1.2917,
-          "suggested_stop": 107.91,
-          "suggested_shares": 193
+          "atr_14": 1.2839,
+          "suggested_stop": 107.81,
+          "suggested_shares": 194
         },
         {
           "ticker": "MA",
           "name": "MA",
           "classification": "LEADER",
-          "rss": 0.0788,
-          "pct_from_52w_high": -2.4931,
+          "rss": 0.0803,
+          "pct_from_52w_high": -2.3589,
           "above_sma50": true,
           "above_sma200": true,
-          "atr_14": 5.8647,
-          "suggested_stop": 573.18,
-          "suggested_shares": 42
+          "atr_14": 5.8072,
+          "suggested_stop": 574.1,
+          "suggested_shares": 43
         },
         {
           "ticker": "V",
           "name": "V",
           "classification": "LEADER",
-          "rss": 0.0615,
-          "pct_from_52w_high": -1.3381,
+          "rss": 0.061,
+          "pct_from_52w_high": -1.4031,
           "above_sma50": true,
           "above_sma200": true,
-          "atr_14": 3.711,
-          "suggested_stop": 371.58,
+          "atr_14": 3.6931,
+          "suggested_stop": 371.36,
           "suggested_shares": 67
         },
         {
           "ticker": "PGR",
           "name": "PGR",
           "classification": "LEADER",
-          "rss": 0.04,
-          "pct_from_52w_high": -4.3543,
+          "rss": 0.0383,
+          "pct_from_52w_high": -4.5249,
           "above_sma50": true,
           "above_sma200": true,
-          "atr_14": 2.8288,
-          "suggested_stop": 218.61,
-          "suggested_shares": 88
+          "atr_14": 2.8002,
+          "suggested_stop": 218.27,
+          "suggested_shares": 89
         },
         {
           "ticker": "BAC",
           "name": "BAC",
           "classification": "LEADER",
-          "rss": 0.0336,
-          "pct_from_52w_high": -2.4919,
+          "rss": 0.0313,
+          "pct_from_52w_high": -2.7311,
           "above_sma50": true,
           "above_sma200": true,
-          "atr_14": 0.5892,
-          "suggested_stop": 62.02,
-          "suggested_shares": 424
+          "atr_14": 0.5781,
+          "suggested_stop": 61.88,
+          "suggested_shares": 432
         },
         {
           "ticker": "JPM",
           "name": "JPM",
           "classification": "LEADER",
-          "rss": 0.0307,
-          "pct_from_52w_high": -0.775,
+          "rss": 0.03,
+          "pct_from_52w_high": -0.8544,
           "above_sma50": true,
           "above_sma200": true,
-          "atr_14": 2.9257,
-          "suggested_stop": 356.5,
-          "suggested_shares": 85
+          "atr_14": 2.905,
+          "suggested_stop": 356.25,
+          "suggested_shares": 86
         },
         {
           "ticker": "CB",
           "name": "CB",
           "classification": "LEADER",
-          "rss": 0.0152,
-          "pct_from_52w_high": -4.2118,
+          "rss": 0.0155,
+          "pct_from_52w_high": -4.1953,
           "above_sma50": true,
           "above_sma200": true,
-          "atr_14": 3.3699,
-          "suggested_stop": 341.45,
+          "atr_14": 3.3742,
+          "suggested_stop": 341.5,
           "suggested_shares": 74
         },
         {
           "ticker": "BLK",
           "name": "BLK",
           "classification": "LEADER",
-          "rss": 0.0027,
-          "pct_from_52w_high": -4.9663,
+          "rss": 0.0042,
+          "pct_from_52w_high": -4.8434,
           "above_sma50": true,
           "above_sma200": true,
-          "atr_14": 14.2715,
-          "suggested_stop": 1096.15,
+          "atr_14": 14.3755,
+          "suggested_stop": 1097.4,
           "suggested_shares": 17
         },
         {
           "ticker": "BRK-B",
           "name": "BRK-B",
           "classification": "LEADER",
-          "rss": -0.0067,
-          "pct_from_52w_high": -4.0894,
+          "rss": -0.0058,
+          "pct_from_52w_high": -4.0214,
           "above_sma50": true,
           "above_sma200": true,
-          "atr_14": 3.1483,
-          "suggested_stop": 501.47,
-          "suggested_shares": 79
+          "atr_14": 3.174,
+          "suggested_stop": 501.78,
+          "suggested_shares": 78
         },
         {
           "ticker": "MS",
           "name": "MS",
           "classification": "LEADER",
-          "rss": -0.0408,
-          "pct_from_52w_high": -4.7954,
+          "rss": -0.0426,
+          "pct_from_52w_high": -4.988,
           "above_sma50": true,
           "above_sma200": true,
-          "atr_14": 2.6651,
-          "suggested_stop": 212.26,
-          "suggested_shares": 93
+          "atr_14": 2.6337,
+          "suggested_stop": 211.88,
+          "suggested_shares": 94
         }
       ],
       "setups": [
@@ -535,8 +535,8 @@
           "ticker": "C",
           "name": "C",
           "classification": "SETUP",
-          "pct_from_sma50": 1.9772,
-          "atr_ratio": 0.6052,
+          "pct_from_sma50": 1.8219,
+          "atr_ratio": 0.5999,
           "vol_contraction": true,
           "above_sma200": true
         },
@@ -544,8 +544,8 @@
           "ticker": "GS",
           "name": "GS",
           "classification": "SETUP",
-          "pct_from_sma50": -0.7019,
-          "atr_ratio": 0.694,
+          "pct_from_sma50": -0.8166,
+          "atr_ratio": 0.6902,
           "vol_contraction": true,
           "above_sma200": true
         }
@@ -554,7 +554,7 @@
     {
       "ticker": "XLC",
       "name": "Communication Services",
-      "rss": 0.0213,
+      "rss": 0.019,
       "rss_rank": 70,
       "rss_slope": 0.001,
       "rss_persist": 2,
@@ -587,7 +587,7 @@
         -0.0165,
         -0.0121,
         0.0058,
-        0.0213
+        0.019
       ],
       "other_count": 9,
       "leaders": [
@@ -595,43 +595,43 @@
           "ticker": "MTCH",
           "name": "MTCH",
           "classification": "LEADER",
-          "rss": 0.1161,
-          "pct_from_52w_high": 0.0,
+          "rss": 0.1097,
+          "pct_from_52w_high": -0.0236,
           "above_sma50": true,
           "above_sma200": true,
-          "atr_14": 0.6987,
-          "suggested_stop": 41.31,
-          "suggested_shares": 357
+          "atr_14": 0.6802,
+          "suggested_stop": 41.07,
+          "suggested_shares": 367
         },
         {
           "ticker": "VZ",
           "name": "VZ",
           "classification": "LEADER",
-          "rss": 0.0646,
-          "pct_from_52w_high": 0.0,
+          "rss": 0.0639,
+          "pct_from_52w_high": -0.0566,
           "above_sma50": true,
           "above_sma200": true,
-          "atr_14": 0.459,
-          "suggested_stop": 49.72,
-          "suggested_shares": 544
+          "atr_14": 0.4558,
+          "suggested_stop": 49.68,
+          "suggested_shares": 548
         },
         {
           "ticker": "OMC",
           "name": "OMC",
           "classification": "LEADER",
-          "rss": 0.0596,
-          "pct_from_52w_high": -4.7897,
+          "rss": 0.0603,
+          "pct_from_52w_high": -4.7335,
           "above_sma50": true,
           "above_sma200": true,
-          "atr_14": 1.4978,
-          "suggested_stop": 81.68,
+          "atr_14": 1.5014,
+          "suggested_stop": 81.73,
           "suggested_shares": 166
         },
         {
           "ticker": "EA",
           "name": "EA",
           "classification": "LEADER",
-          "rss": -0.0047,
+          "rss": -0.0045,
           "pct_from_52w_high": -0.1,
           "above_sma50": true,
           "above_sma200": true,
@@ -645,8 +645,8 @@
           "ticker": "GOOG",
           "name": "GOOG",
           "classification": "SETUP",
-          "pct_from_sma50": -1.8945,
-          "atr_ratio": 0.5879,
+          "pct_from_sma50": -2.2055,
+          "atr_ratio": 0.578,
           "vol_contraction": true,
           "above_sma200": true
         },
@@ -654,8 +654,8 @@
           "ticker": "GOOGL",
           "name": "GOOGL",
           "classification": "SETUP",
-          "pct_from_sma50": -1.4854,
-          "atr_ratio": 0.6131,
+          "pct_from_sma50": -1.775,
+          "atr_ratio": 0.604,
           "vol_contraction": true,
           "above_sma200": true
         }
@@ -664,13 +664,13 @@
     {
       "ticker": "XLP",
       "name": "Consumer Staples",
-      "rss": -0.0017,
+      "rss": -0.0022,
       "rss_rank": 60,
       "rss_slope": 0.0007,
       "rss_persist": 2,
       "trend": "negative",
       "breakout": false,
-      "map_50": 40.0,
+      "map_50": 33.3333,
       "map_200": 66.6667,
       "map_band": "low",
       "rally_flag": false,
@@ -697,51 +697,51 @@
         -0.0273,
         -0.0045,
         0.006,
-        -0.0017
+        -0.0022
       ],
-      "other_count": 7,
+      "other_count": 6,
       "leaders": [
         {
           "ticker": "TGT",
           "name": "TGT",
           "classification": "LEADER",
-          "rss": 0.1244,
-          "pct_from_52w_high": -3.5523,
+          "rss": 0.1255,
+          "pct_from_52w_high": -3.4611,
           "above_sma50": true,
           "above_sma200": true,
-          "atr_14": 2.437,
-          "suggested_stop": 158.98,
+          "atr_14": 2.4481,
+          "suggested_stop": 159.11,
           "suggested_shares": 102
         },
         {
           "ticker": "KO",
           "name": "KO",
           "classification": "LEADER",
-          "rss": 0.0443,
-          "pct_from_52w_high": -3.0819,
+          "rss": 0.0406,
+          "pct_from_52w_high": -3.4569,
           "above_sma50": true,
           "above_sma200": true,
-          "atr_14": 0.8305,
-          "suggested_stop": 87.49,
-          "suggested_shares": 301
+          "atr_14": 0.8059,
+          "suggested_stop": 87.2,
+          "suggested_shares": 310
         }
       ],
       "setups": [
         {
-          "ticker": "PG",
-          "name": "PG",
+          "ticker": "SYY",
+          "name": "SYY",
           "classification": "SETUP",
-          "pct_from_sma50": 0.1379,
-          "atr_ratio": 0.4967,
+          "pct_from_sma50": -2.2796,
+          "atr_ratio": 0.5011,
           "vol_contraction": true,
           "above_sma200": true
         },
         {
-          "ticker": "SYY",
-          "name": "SYY",
+          "ticker": "PG",
+          "name": "PG",
           "classification": "SETUP",
-          "pct_from_sma50": -2.2087,
-          "atr_ratio": 0.4981,
+          "pct_from_sma50": -0.0022,
+          "atr_ratio": 0.5028,
           "vol_contraction": true,
           "above_sma200": true
         },
@@ -749,17 +749,8 @@
           "ticker": "MDLZ",
           "name": "MDLZ",
           "classification": "SETUP",
-          "pct_from_sma50": -0.2837,
-          "atr_ratio": 0.5818,
-          "vol_contraction": true,
-          "above_sma200": true
-        },
-        {
-          "ticker": "PM",
-          "name": "PM",
-          "classification": "SETUP",
-          "pct_from_sma50": -0.2258,
-          "atr_ratio": 0.5998,
+          "pct_from_sma50": -0.1005,
+          "atr_ratio": 0.5751,
           "vol_contraction": true,
           "above_sma200": true
         },
@@ -767,8 +758,8 @@
           "ticker": "CL",
           "name": "CL",
           "classification": "SETUP",
-          "pct_from_sma50": -2.0445,
-          "atr_ratio": 0.601,
+          "pct_from_sma50": -1.9004,
+          "atr_ratio": 0.5946,
           "vol_contraction": true,
           "above_sma200": true
         },
@@ -776,8 +767,26 @@
           "ticker": "KMB",
           "name": "KMB",
           "classification": "SETUP",
-          "pct_from_sma50": -1.5061,
-          "atr_ratio": 0.6088,
+          "pct_from_sma50": -1.524,
+          "atr_ratio": 0.6095,
+          "vol_contraction": true,
+          "above_sma200": true
+        },
+        {
+          "ticker": "PM",
+          "name": "PM",
+          "classification": "SETUP",
+          "pct_from_sma50": -0.7301,
+          "atr_ratio": 0.6178,
+          "vol_contraction": true,
+          "above_sma200": true
+        },
+        {
+          "ticker": "KHC",
+          "name": "KHC",
+          "classification": "SETUP",
+          "pct_from_sma50": 0.3553,
+          "atr_ratio": 0.7493,
           "vol_contraction": true,
           "above_sma200": true
         }
@@ -786,7 +795,7 @@
     {
       "ticker": "XLB",
       "name": "Materials",
-      "rss": -0.013,
+      "rss": -0.0136,
       "rss_rank": 50,
       "rss_slope": 0.0008,
       "rss_persist": 4,
@@ -819,7 +828,7 @@
         -0.0098,
         -0.0129,
         0.0059,
-        -0.013
+        -0.0136
       ],
       "other_count": 9,
       "leaders": [
@@ -827,61 +836,61 @@
           "ticker": "NEM",
           "name": "NEM",
           "classification": "LEADER",
-          "rss": 0.1669,
-          "pct_from_52w_high": -3.5149,
+          "rss": 0.1674,
+          "pct_from_52w_high": -3.4853,
           "above_sma50": true,
           "above_sma200": true,
-          "atr_14": 3.1763,
-          "suggested_stop": 124.04,
+          "atr_14": 3.1791,
+          "suggested_stop": 124.07,
           "suggested_shares": 78
         },
         {
           "ticker": "CTVA",
           "name": "CTVA",
           "classification": "LEADER",
-          "rss": 0.0845,
-          "pct_from_52w_high": -2.3975,
+          "rss": 0.0878,
+          "pct_from_52w_high": -2.0882,
           "above_sma50": true,
           "above_sma200": true,
-          "atr_14": 1.3801,
-          "suggested_stop": 85.58,
-          "suggested_shares": 181
+          "atr_14": 1.3601,
+          "suggested_stop": 85.9,
+          "suggested_shares": 183
         },
         {
           "ticker": "IFF",
           "name": "IFF",
           "classification": "LEADER",
-          "rss": 0.0367,
-          "pct_from_52w_high": -1.8962,
+          "rss": 0.0376,
+          "pct_from_52w_high": -1.8281,
           "above_sma50": true,
           "above_sma200": true,
-          "atr_14": 1.1427,
-          "suggested_stop": 84.11,
-          "suggested_shares": 218
+          "atr_14": 1.1384,
+          "suggested_stop": 84.18,
+          "suggested_shares": 219
         },
         {
           "ticker": "APD",
           "name": "APD",
           "classification": "LEADER",
-          "rss": 0.0242,
-          "pct_from_52w_high": -3.0873,
+          "rss": 0.0235,
+          "pct_from_52w_high": -3.1732,
           "above_sma50": true,
           "above_sma200": true,
-          "atr_14": 3.3282,
-          "suggested_stop": 297.83,
-          "suggested_shares": 75
+          "atr_14": 3.3475,
+          "suggested_stop": 297.52,
+          "suggested_shares": 74
         },
         {
           "ticker": "NUE",
           "name": "NUE",
           "classification": "LEADER",
-          "rss": 0.0055,
-          "pct_from_52w_high": -4.679,
+          "rss": 0.0079,
+          "pct_from_52w_high": -4.466,
           "above_sma50": true,
           "above_sma200": true,
-          "atr_14": 4.3391,
-          "suggested_stop": 253.21,
-          "suggested_shares": 57
+          "atr_14": 4.2973,
+          "suggested_stop": 253.88,
+          "suggested_shares": 58
         }
       ],
       "setups": [
@@ -889,8 +898,8 @@
           "ticker": "ECL",
           "name": "ECL",
           "classification": "SETUP",
-          "pct_from_sma50": 0.2486,
-          "atr_ratio": 0.5415,
+          "pct_from_sma50": 0.2169,
+          "atr_ratio": 0.5428,
           "vol_contraction": true,
           "above_sma200": true
         }
@@ -899,7 +908,7 @@
     {
       "ticker": "XLY",
       "name": "Consumer Discretionary",
-      "rss": -0.0166,
+      "rss": -0.0188,
       "rss_rank": 40,
       "rss_slope": -0.001,
       "rss_persist": 0,
@@ -932,7 +941,7 @@
         -0.0298,
         -0.0337,
         -0.0312,
-        -0.0166
+        -0.0188
       ],
       "other_count": 10,
       "leaders": [
@@ -940,37 +949,37 @@
           "ticker": "ABNB",
           "name": "ABNB",
           "classification": "LEADER",
-          "rss": 0.179,
-          "pct_from_52w_high": -2.979,
+          "rss": 0.1814,
+          "pct_from_52w_high": -2.7559,
           "above_sma50": true,
           "above_sma200": true,
-          "atr_14": 3.183,
-          "suggested_stop": 178.46,
-          "suggested_shares": 78
+          "atr_14": 3.2133,
+          "suggested_stop": 178.82,
+          "suggested_shares": 77
         },
         {
           "ticker": "GM",
           "name": "GM",
           "classification": "LEADER",
-          "rss": 0.0163,
-          "pct_from_52w_high": -3.3167,
+          "rss": 0.0155,
+          "pct_from_52w_high": -3.4109,
           "above_sma50": true,
           "above_sma200": true,
-          "atr_14": 1.1387,
-          "suggested_stop": 85.03,
-          "suggested_shares": 219
+          "atr_14": 1.1326,
+          "suggested_stop": 84.95,
+          "suggested_shares": 220
         },
         {
           "ticker": "SBUX",
           "name": "SBUX",
           "classification": "LEADER",
-          "rss": 0.0057,
-          "pct_from_52w_high": -2.2847,
+          "rss": 0.0035,
+          "pct_from_52w_high": -2.515,
           "above_sma50": true,
           "above_sma200": true,
-          "atr_14": 1.1622,
-          "suggested_stop": 103.75,
-          "suggested_shares": 215
+          "atr_14": 1.1801,
+          "suggested_stop": 103.46,
+          "suggested_shares": 211
         }
       ],
       "setups": [
@@ -978,8 +987,8 @@
           "ticker": "BKNG",
           "name": "BKNG",
           "classification": "SETUP",
-          "pct_from_sma50": 1.1483,
-          "atr_ratio": 0.6742,
+          "pct_from_sma50": 1.0976,
+          "atr_ratio": 0.6754,
           "vol_contraction": true,
           "above_sma200": true
         },
@@ -987,8 +996,8 @@
           "ticker": "F",
           "name": "F",
           "classification": "SETUP",
-          "pct_from_sma50": 2.1791,
-          "atr_ratio": 0.7271,
+          "pct_from_sma50": 2.2138,
+          "atr_ratio": 0.7283,
           "vol_contraction": true,
           "above_sma200": true
         }
@@ -997,14 +1006,14 @@
     {
       "ticker": "XLRE",
       "name": "Real Estate",
-      "rss": -0.0276,
+      "rss": -0.0264,
       "rss_rank": 30,
       "rss_slope": -0.0001,
       "rss_persist": 0,
       "trend": "negative",
       "breakout": false,
       "map_50": 40.0,
-      "map_200": 86.6667,
+      "map_200": 80.0,
       "map_band": "low",
       "rally_flag": false,
       "breadth_divergence": false,
@@ -1030,21 +1039,21 @@
         -0.0398,
         -0.0241,
         -0.0225,
-        -0.0276
+        -0.0264
       ],
-      "other_count": 11,
+      "other_count": 10,
       "leaders": [
         {
           "ticker": "WELL",
           "name": "WELL",
           "classification": "LEADER",
-          "rss": 0.0486,
-          "pct_from_52w_high": -4.5503,
+          "rss": 0.051,
+          "pct_from_52w_high": -4.344,
           "above_sma50": true,
           "above_sma200": true,
-          "atr_14": 2.2718,
-          "suggested_stop": 236.06,
-          "suggested_shares": 110
+          "atr_14": 2.309,
+          "suggested_stop": 236.5,
+          "suggested_shares": 108
         }
       ],
       "setups": [
@@ -1061,8 +1070,17 @@
           "ticker": "O",
           "name": "O",
           "classification": "SETUP",
-          "pct_from_sma50": -2.3295,
-          "atr_ratio": 0.4824,
+          "pct_from_sma50": -2.345,
+          "atr_ratio": 0.4815,
+          "vol_contraction": true,
+          "above_sma200": true
+        },
+        {
+          "ticker": "PLD",
+          "name": "PLD",
+          "classification": "SETUP",
+          "pct_from_sma50": -2.7463,
+          "atr_ratio": 0.5144,
           "vol_contraction": true,
           "above_sma200": true
         },
@@ -1070,8 +1088,8 @@
           "ticker": "DLR",
           "name": "DLR",
           "classification": "SETUP",
-          "pct_from_sma50": 0.0478,
-          "atr_ratio": 0.6842,
+          "pct_from_sma50": 0.4989,
+          "atr_ratio": 0.6998,
           "vol_contraction": true,
           "above_sma200": true
         }
@@ -1080,7 +1098,7 @@
     {
       "ticker": "XLK",
       "name": "Technology",
-      "rss": -0.0412,
+      "rss": -0.0399,
       "rss_rank": 21,
       "rss_slope": -0.0006,
       "rss_persist": 2,
@@ -1113,7 +1131,7 @@
         0.0051,
         -0.0096,
         -0.0344,
-        -0.0412
+        -0.0399
       ],
       "other_count": 11,
       "leaders": [
@@ -1121,36 +1139,36 @@
           "ticker": "CRM",
           "name": "CRM",
           "classification": "LEADER",
-          "rss": 0.3688,
-          "pct_from_52w_high": 0.0,
+          "rss": 0.3663,
+          "pct_from_52w_high": -0.1707,
           "above_sma50": true,
           "above_sma200": true,
-          "atr_14": 6.0905,
-          "suggested_stop": 252.94,
+          "atr_14": 6.0412,
+          "suggested_stop": 252.35,
           "suggested_shares": 41
         },
         {
           "ticker": "AAPL",
           "name": "AAPL",
           "classification": "LEADER",
-          "rss": 0.052,
-          "pct_from_52w_high": -3.6433,
+          "rss": 0.0538,
+          "pct_from_52w_high": -3.4904,
           "above_sma50": true,
           "above_sma200": true,
-          "atr_14": 11.8974,
-          "suggested_stop": 303.9,
-          "suggested_shares": 21
+          "atr_14": 11.9345,
+          "suggested_stop": 304.34,
+          "suggested_shares": 20
         },
         {
           "ticker": "NVDA",
           "name": "NVDA",
           "classification": "LEADER",
-          "rss": 0.039,
-          "pct_from_52w_high": -2.8011,
+          "rss": 0.0373,
+          "pct_from_52w_high": -2.9794,
           "above_sma50": true,
           "above_sma200": true,
-          "atr_14": 4.9451,
-          "suggested_stop": 218.98,
+          "atr_14": 4.9151,
+          "suggested_stop": 218.62,
           "suggested_shares": 50
         }
       ],
@@ -1159,8 +1177,8 @@
           "ticker": "QCOM",
           "name": "QCOM",
           "classification": "SETUP",
-          "pct_from_sma50": -1.2547,
-          "atr_ratio": 0.69,
+          "pct_from_sma50": -1.3751,
+          "atr_ratio": 0.6932,
           "vol_contraction": true,
           "above_sma200": true
         }
@@ -1169,7 +1187,7 @@
     {
       "ticker": "XLU",
       "name": "Utilities",
-      "rss": -0.0447,
+      "rss": -0.0451,
       "rss_rank": 11,
       "rss_slope": -0.0011,
       "rss_persist": 0,
@@ -1202,7 +1220,7 @@
         -0.0698,
         -0.0503,
         -0.0441,
-        -0.0447
+        -0.0451
       ],
       "other_count": 12,
       "leaders": [
@@ -1210,13 +1228,13 @@
           "ticker": "AWK",
           "name": "AWK",
           "classification": "LEADER",
-          "rss": 0.0617,
-          "pct_from_52w_high": -0.9575,
+          "rss": 0.0601,
+          "pct_from_52w_high": -1.1364,
           "above_sma50": true,
           "above_sma200": true,
-          "atr_14": 1.5461,
-          "suggested_stop": 138.05,
-          "suggested_shares": 161
+          "atr_14": 1.5279,
+          "suggested_stop": 137.83,
+          "suggested_shares": 163
         }
       ],
       "setups": [
@@ -1224,8 +1242,8 @@
           "ticker": "D",
           "name": "D",
           "classification": "SETUP",
-          "pct_from_sma50": -2.809,
-          "atr_ratio": 0.4681,
+          "pct_from_sma50": -2.9728,
+          "atr_ratio": 0.4606,
           "vol_contraction": true,
           "above_sma200": true
         },
@@ -1233,8 +1251,8 @@
           "ticker": "ED",
           "name": "ED",
           "classification": "SETUP",
-          "pct_from_sma50": -1.0093,
-          "atr_ratio": 0.5027,
+          "pct_from_sma50": -0.9512,
+          "atr_ratio": 0.5053,
           "vol_contraction": true,
           "above_sma200": true
         }
@@ -1243,7 +1261,7 @@
     {
       "ticker": "XLI",
       "name": "Industrials",
-      "rss": -0.0671,
+      "rss": -0.0655,
       "rss_rank": 1,
       "rss_slope": -0.0036,
       "rss_persist": 0,
@@ -1276,42 +1294,51 @@
         -0.0456,
         -0.058,
         -0.0626,
-        -0.0671
+        -0.0655
       ],
-      "other_count": 9,
+      "other_count": 8,
       "leaders": [
         {
           "ticker": "ADP",
           "name": "ADP",
           "classification": "LEADER",
           "rss": 0.1322,
-          "pct_from_52w_high": -3.232,
+          "pct_from_52w_high": -3.2474,
           "above_sma50": true,
           "above_sma200": true,
-          "atr_14": 3.1525,
-          "suggested_stop": 277.27,
+          "atr_14": 3.1493,
+          "suggested_stop": 277.23,
           "suggested_shares": 79
         },
         {
           "ticker": "DE",
           "name": "DE",
           "classification": "LEADER",
-          "rss": 0.1083,
-          "pct_from_52w_high": -1.0324,
+          "rss": 0.1131,
+          "pct_from_52w_high": -0.567,
           "above_sma50": true,
           "above_sma200": true,
-          "atr_14": 13.0336,
-          "suggested_stop": 665.09,
+          "atr_14": 12.8015,
+          "suggested_stop": 668.81,
           "suggested_shares": 19
         }
       ],
       "setups": [
         {
+          "ticker": "GD",
+          "name": "GD",
+          "classification": "SETUP",
+          "pct_from_sma50": -2.8883,
+          "atr_ratio": 0.5754,
+          "vol_contraction": true,
+          "above_sma200": true
+        },
+        {
           "ticker": "RTX",
           "name": "RTX",
           "classification": "SETUP",
-          "pct_from_sma50": -2.494,
-          "atr_ratio": 0.6079,
+          "pct_from_sma50": -2.1618,
+          "atr_ratio": 0.6205,
           "vol_contraction": true,
           "above_sma200": true
         },
@@ -1319,8 +1346,8 @@
           "ticker": "CSX",
           "name": "CSX",
           "classification": "SETUP",
-          "pct_from_sma50": -1.8266,
-          "atr_ratio": 0.6376,
+          "pct_from_sma50": -1.9933,
+          "atr_ratio": 0.6295,
           "vol_contraction": true,
           "above_sma200": true
         },
@@ -1328,8 +1355,8 @@
           "ticker": "UNP",
           "name": "UNP",
           "classification": "SETUP",
-          "pct_from_sma50": -0.8449,
-          "atr_ratio": 0.71,
+          "pct_from_sma50": -1.0729,
+          "atr_ratio": 0.718,
           "vol_contraction": true,
           "above_sma200": true
         },
@@ -1337,14 +1364,12 @@
           "ticker": "EMR",
           "name": "EMR",
           "classification": "SETUP",
-          "pct_from_sma50": 0.8263,
-          "atr_ratio": 0.7185,
+          "pct_from_sma50": 0.8559,
+          "atr_ratio": 0.7194,
           "vol_contraction": true,
           "above_sma200": true
         }
       ]
     }
-  ],
-  "intraday": true,
-  "as_of_time_utc": "2026-09-03T19:43:09Z"
+  ]
 }
